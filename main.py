@@ -56,14 +56,9 @@ class Student:
                 course_flow += f'{course}, '
         return course_flow
 
-
-
-
     def __str__(self):
         res = f'Имя: {self.name} \nФамилия: {self.surname}\nСредняя оценка за лекцию: {self.average()}\nКурсы в процессе обучения: {self.courses()}\nЗавершенные курсы: {self.courses_finished()}'
         return res
-
-
 
 
 class Mentor:
