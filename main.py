@@ -17,14 +17,14 @@ class Student:
         else:
             return 'Ошибка'
 
-    def who_is_better(self, student):
-        if isinstance(student, Student):
-            if self.average() > student.average():
-                return f'У {self.name} {self.surname} средний балл выше'
-            elif self.average() == student.average():
-                return f'Средний балл одинаковый'
-            else:
-                return f'У {student.name} {student.surname} средний балл выше'
+    # def who_is_better(self, student):
+    #     if isinstance(student, Student):
+    #         if self.average() > student.average():
+    #             return f'У {self.name} {self.surname} средний балл выше'
+    #         elif self.average() == student.average():
+    #             return f'Средний балл одинаковый'
+    #         else:
+    #             return f'У {student.name} {student.surname} средний балл выше'
 
     def average(self):
         average_grade = 0
@@ -37,6 +37,13 @@ class Student:
             return 'У студента нет оценок'
         else:
             return average_grade / grade_count
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Не лектор')
+        if self.average() > other.average():
+            print(f'У {self.name}{self.surname} средний балл больше')
+        else:
+            print(f'У {other.name} {other.surname} средний балл выше')
 
     def courses(self):
         course_flow = ''
@@ -86,14 +93,24 @@ class Lecturer(Mentor):
         else:
             return average_grade / grade_count
 
-    def who_is_better(self, lecturer):
-        if isinstance(lecturer, Lecturer):
-            if self.average() > lecturer.average():
-                return f'У {self.name} {self.surname} средний балл выше'
-            elif self.average() == lecturer.average():
-                return f'Средний балл одинаковый'
-            else:
-                return f'У {lecturer.name} {lecturer.surname} средний балл выше'
+    # def who_is_better(self, lecturer):
+    #     if isinstance(lecturer, Lecturer):
+    #         if self.average() > lecturer.average():
+    #             return f'У {self.name} {self.surname} средний балл выше'
+    #         elif self.average() == lecturer.average():
+    #             return f'Средний балл одинаковый'
+    #         else:
+    #             return f'У {lecturer.name} {lecturer.surname} средний балл выше'
+
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Не лектор')
+        if self.average() > other.average():
+            print(f'У {self.name}{self.surname} средний балл больше')
+        else:
+            print(f'У {other.name} {other.surname} средний балл выше')
+
+
 
     def __str__(self):
         res = f'Имя: {self.name} \nФамилия: {self.surname}\nСредняя оценка за лекцию: {self.average()}'
@@ -171,8 +188,11 @@ print(reviewer_1)
 print(lecturer_1)
 print(student_1)
 
-print(student_1.who_is_better(student_2))
-print(lecturer_1.who_is_better(lecturer_2))
+# print(student_1.who_is_better(student_2))
+# print(lecturer_1.who_is_better(lecturer_2))
+
+print(student_1 > student_2)
+print(lecturer_1 < lecturer_2)
 
 def students_avg(lst):
     average = 0
